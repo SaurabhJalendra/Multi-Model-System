@@ -192,4 +192,4 @@ Built by Saurabh Jalendra and the SKY AI team. Powered by OpenRouter LLMs, LangC
 
 ## Contact
 
-For inquiries, reach out at: [hello@sky-ai.in](mailto:hello@sky-ai.in)
+For inquiries, reach out at: [info@sky-ai.in](mailto:info@sky-ai.in)
