@@ -14,6 +14,9 @@ This document outlines the **technical architecture** of the SKAI system, detail
 
    * CLI / Web UI (Streamlit)
    * Voice Interface (Mic + TTS)
+     * Wake word detection
+     * Streaming conversational voice
+     * Natural back-and-forth dialog
    * Optional: API / Mobile App
 
 2. **Orchestration Layer**
@@ -89,9 +92,16 @@ This document outlines the **technical architecture** of the SKAI system, detail
 
 ### 🔊 Voice Agent
 
-* STT via `speech_recognition`
-* TTS via `Coqui TTS`
-* Handles audio loopback (for live chat mode)
+* Comprehensive conversational voice interface
+* STT via `Whisper` models
+* TTS via `Coqui TTS` or `Piper`
+* Wake word detection with `Porcupine` or `Vosk`
+* Handles streaming audio for real-time responses
+* Voice activity detection for natural turn-taking
+* Voice tone and sentiment analysis
+* Manages multi-turn conversations
+* Handles voice interruptions
+* Adapts responses for voice-specific formats
 
 ---
 
@@ -130,12 +140,32 @@ Response Synthesized (TTS or text)
 User Output + Logging + Memory Update
 ```
 
+## 🔄 Voice Interaction Flow
+
+```text
+User → "Hey SKAI" Wake Word
+     ↓
+Voice Agent (activates listening)
+     ↓
+Speech-to-Text Conversion
+     ↓
+Communicator Agent (intent/sentiment)
+     ↓
+Kernel Agent (orchestrates response)
+     ↓
+Response Generation
+     ↓
+Text-to-Speech Conversion
+     ↓
+Spoken Response + Context Update
+```
+
 ---
 
 ## 🛠 Core Dependencies
 
 * `LangChain`, `ChromaDB`, `OpenRouter`
-* `Coqui TTS`, `speech_recognition`
+* `Coqui TTS`, `speech_recognition`, `Whisper`, `Porcupine/Vosk`
 * `Python-dotenv`, `requests`, `pydantic`
 * ADK (optional agent orchestration upgrade)
 
@@ -146,6 +176,7 @@ User Output + Logging + Memory Update
 * Lightweight setup for CLI or desktop assistant
 * Can scale to server-hosted orchestration with background agent runner
 * Local LLM support (via Ollama/llama.cpp) optionally supported
+* Voice services can run locally or use cloud APIs
 
 ---
 
@@ -155,16 +186,18 @@ User Output + Logging + Memory Update
 * Distributed agent scheduling
 * Plugin interface for adding/removing agents at runtime
 * Real-time streaming architecture for low-latency speech mode
+* Voice-driven UI control and navigation
 
 ---
 
 ## 🧭 Summary
 
-SKAI’s architecture is:
+SKAI's architecture is:
 
 * Modular and agent-based
 * LLM-flexible and cloud/local friendly
 * Designed for continuous self-improvement
+* Voice-first with ChatGPT-like conversational abilities
 * Capable of scaling from personal assistant to semi-autonomous system
 
 This foundation enables advanced features like memory, tool-use, multi-agent orchestration, and future self-upgrading AI capabilities.

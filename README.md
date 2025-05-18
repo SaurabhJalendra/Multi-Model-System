@@ -50,6 +50,15 @@ This project aims to build a sentient kernel capable of coordinating multiple in
 * LangChain-powered RAG for document and knowledge retrieval
 * Coqui TTS and speech\_recognition for voice interaction
 
+### 🎤 Voice Interface
+
+* ChatGPT-like voice conversations with natural back-and-forth
+* Whisper-powered speech recognition for accurate transcription
+* High-quality text-to-speech using Coqui TTS or Piper
+* "Hey SKAI" wake word detection using Porcupine/Vosk
+* Voice tone and sentiment analysis for responsive interactions
+* Seamless switching between text and voice modes
+
 ### 🌐 Multi-Interface Support
 
 * CLI-based interface
@@ -158,6 +167,11 @@ Start the voice assistant module:
 python voice_interface.py
 ```
 
+Voice commands:
+* Say "Hey SKAI" to activate wake word detection
+* Speak naturally for multi-turn conversations
+* Say "stop listening" to end voice mode
+
 ---
 
 ## Roadmap
@@ -166,6 +180,8 @@ python voice_interface.py
 * [x] Agent Communication & Task Routing
 * [x] Semantic Search & Vector Database
 * [x] Voice I/O with Coqui TTS + speech\_recognition
+* [ ] Wake word detection with Porcupine/Vosk
+* [ ] ChatGPT-like voice conversations
 * [ ] Local agent sandboxing via subprocess containers
 * [ ] Full self-improving feedback loop via RLHF
 * [ ] Integration with external tools (JIRA, GitHub, Google Docs)

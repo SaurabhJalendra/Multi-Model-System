@@ -34,20 +34,38 @@ This document outlines the proposed roadmap and conceptual design for implementi
 
 ## 🎤 Voice Interaction & Multimodality
 
-### 4. **Wake Word Detection**
+### 4. **ChatGPT-Like Voice Conversations**
 
-* Implement “Hey SKAI” hotword trigger using:
+* Implement natural, flowing voice interactions similar to ChatGPT
+* Enable multi-turn conversations with context preservation
+* Support voice interruptions and real-time responses
+* Add voice activity detection for natural turn-taking
+* Implement voice tone and sentiment analysis
+* Create voice-specific response formats (more conversational)
 
-  * `Porcupine`, `Vosk`, or `whisper.cpp`
-  * Lightweight model for real-time audio detection
+### 5. **Wake Word Detection**
 
-### 5. **Two-Way Voice Loop**
+* Implement "Hey SKAI" hotword trigger using:
 
-* Continuous microphone monitoring
-* Stream responses through `Coqui TTS` in near real time
-* Optionally display subtitles in Streamlit/web UI
+  * `Vosk` (offline, grammar-based)
+  * `Porcupine` (lightweight keyword spotting)
+* Ensure low false positive/negative rates
+* Add visual confirmation when wake word is detected
+* Support personalized wake words
 
-### 6. **Visual Input Support**
+### 6. **Advanced Speech Processing**
+
+* STT with `Whisper` (base/small model)
+* TTS using **open-source options**:
+
+  * `Coqui TTS` (natural and customizable)
+  * `Piper` (lightweight, offline, fast)
+* Stream responses using `pydub` or `sounddevice`
+* Implement adaptive noise cancellation
+* Support multiple voice styles and personalities
+* Add support for multiple languages
+
+### 7. **Visual Input Support**
 
 * Add multimodal LLM support:
 
@@ -59,7 +77,7 @@ This document outlines the proposed roadmap and conceptual design for implementi
 
 ## 🛠 System & Device Integration
 
-### 7. **Desktop Agent Tools**
+### 8. **Desktop Agent Tools**
 
 * Automate tasks like:
 
@@ -69,12 +87,12 @@ This document outlines the proposed roadmap and conceptual design for implementi
   * Screen reading
 * Use Python modules: `pyautogui`, `psutil`, `pyttsx3`, `os`, `subprocess`
 
-### 8. **Smart Home Control (Optional)**
+### 9. **Smart Home Control (Optional)**
 
 * Connect with Home Assistant, Alexa API, or Google Home
 * Allow voice-controlled lights, thermostat, IoT devices
 
-### 9. **Browser & Web App Automation**
+### 10. **Browser & Web App Automation**
 
 * Automate browser tabs via plugin or Selenium
 * Monitor and suggest actions in Gmail, Notion, Jira, Figma, etc.
@@ -83,19 +101,19 @@ This document outlines the proposed roadmap and conceptual design for implementi
 
 ## 🔄 Self-Evolution & Adaptation
 
-### 10. **Code Improvement Agent**
+### 11. **Code Improvement Agent**
 
 * Monitor logs, exceptions, and user corrections
-* Suggest or automatically update SKAI’s own codebase
+* Suggest or automatically update SKAI's own codebase
 * Version-aware changelog with revert options
 
-### 11. **Learning from Feedback**
+### 12. **Learning from Feedback**
 
 * Capture success/failure feedback from users
 * Reinforcement loop for future decision adjustments
 * Personalize agent preferences per user
 
-### 12. **Dynamic Model Routing**
+### 13. **Dynamic Model Routing**
 
 * Use multiple LLMs for specialized subtasks (code, QA, summarization)
 * Switch models in real time based on performance, latency, and token limits
@@ -104,38 +122,42 @@ This document outlines the proposed roadmap and conceptual design for implementi
 
 ## 📱 Interface & User Experience
 
-### 13. **Web & Mobile UI Enhancements**
+### 14. **Web & Mobile UI Enhancements**
 
 * Dashboard showing:
 
   * Real-time task execution logs
   * Chat + voice logs
   * Memory graph
-  * “What SKAI is doing now” status box
+  * "What SKAI is doing now" status box
+* Voice recognition status indicator
+* Waveform visualization for voice input/output
 
-### 14. **3D Avatar Companion (Optional)**
+### 15. **3D Avatar Companion (Optional)**
 
 * Use Three.js or Unity WebGL for rendering a responsive AI avatar
 * Display facial expressions, status indicators, speech animation
+* Lip-sync with speech output
 
-### 15. **Mobile Companion App**
+### 16. **Mobile Companion App**
 
 * Push notifications, task triggers, file uploads
 * Integrate TTS + STT on device for remote SKAI interaction
+* Background wake word detection
 
 ---
 
 ## 🧩 Tools & Libraries to Explore
 
-| Purpose             | Tools/Libraries                         |
-| ------------------- | --------------------------------------- |
-| Wake Word Detection | `Porcupine`, `whisper.cpp`, `Vosk`      |
-| Voice I/O           | `Coqui TTS`, `speech_recognition`       |
-| Desktop Automation  | `pyautogui`, `psutil`, `subprocess`     |
-| Web Automation      | `Selenium`, `Playwright`, `Pyppeteer`   |
-| Smart Home          | `Home Assistant API`, `Alexa SDK`       |
-| Multimodal LLMs     | `llava`, `llama-3-vision`, `OpenRouter` |
-| Local LLMs          | `Ollama`, `llama.cpp`, `LM Studio`      |
+| Purpose             | Tools/Libraries                                       |
+| ------------------- | ----------------------------------------------------- |
+| Wake Word Detection | `Porcupine`, `Vosk`                                   |
+| Voice I/O (TTS/STT) | `Whisper`, `Coqui TTS`, `Piper`, `speech_recognition` |
+| Desktop Automation  | `pyautogui`, `psutil`, `subprocess`                   |
+| Web Automation      | `Selenium`, `Playwright`, `Pyppeteer`                 |
+| Smart Home          | `Home Assistant API`, `Alexa SDK`                     |
+| Multimodal LLMs     | `llava`, `llama-3-vision`, `OpenRouter`               |
+| Local LLMs          | `Ollama`, `llama.cpp`, `LM Studio`                    |
 
 ---
 
@@ -150,7 +172,8 @@ This document outlines the proposed roadmap and conceptual design for implementi
 
 ### Phase 2: Ambient AI Agent
 
-* ⏳ Wake word
+* ⏳ Wake word detection (Vosk / Porcupine)
+* ⏳ ChatGPT-like voice conversations
 * ⏳ Persistent background loop
 * ⏳ Contextual session state + memory management
 
@@ -179,8 +202,9 @@ This document outlines the proposed roadmap and conceptual design for implementi
 SKAI evolves into a **sentient, adaptive, JARVIS-like assistant** capable of:
 
 * Real-time listening and acting
+* ChatGPT-like natural voice conversations
 * Understanding multimodal input
 * Operating your digital + physical world
 * Learning and upgrading itself
 
-It’s not just an AI agent — it’s **a cognitive operating system for your life.**
+It's not just an AI agent — it's **a cognitive operating system for your life.**
