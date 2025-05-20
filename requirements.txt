@@ -1,0 +1,31 @@
+# Core dependencies
+requests>=2.28.1
+python-dotenv>=0.21.0
+pydantic>=1.10.0
+dataclasses>=0.6
+typing-extensions>=4.3.0
+
+# Memory and storage
+chromadb>=0.4.6
+
+# Voice dependencies (basic)
+SpeechRecognition>=3.10.0
+pydub>=0.25.1
+pyttsx3>=2.90
+
+# Wake word detection
+pvporcupine>=3.0.0  # Picovoice Porcupine wake word engine
+pvrecorder>=1.1.1   # Audio recording for Picovoice
+
+# Logging
+colorlog>=6.7.0
+
+# Development dependencies
+pytest>=7.0.0
+black>=22.8.0
+flake8>=6.0.0
+mypy>=1.0.0
+
+# Optional advanced voice dependencies (install separately if needed)
+# pip install openai-whisper  # Advanced speech recognition
+# pip install TTS  # Coqui TTS for high-quality speech synthesis
